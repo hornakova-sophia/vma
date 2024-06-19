@@ -7,7 +7,6 @@ import java.util.UUID
 
 @Entity(tableName = "Omalovanky")
 data class Omalovanky(
-    val nazov: String,
     val obrazok: String
 ) : Serializable {
 

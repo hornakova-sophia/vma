@@ -4,7 +4,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import jazyk.Jazyk
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 
@@ -26,5 +25,5 @@ interface JazykDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM Jazyk WHERE uuid=:uuid")
-    fun getByUUID(uuid: UUID): Flow<Jazyk>
+    fun getByUUID(uuid: Int): Flow<Jazyk>
 }

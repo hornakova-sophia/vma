@@ -23,10 +23,15 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.viewModels
+import jazyk.JazykViewModel
+import omalovanky.OmalovankyViewModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-
+import androidx.lifecycle.Observer
 public var pomocnaFarba = Color.parseColor("#000000")
 
 class MalovanieActivity : AppCompatActivity(){
@@ -40,11 +45,21 @@ class MalovanieActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_malovanie)
-
+        val omalovankyViewModel : OmalovankyViewModel by viewModels {
+            OmalovankyViewModel.OmalovankyViewModelFactory((application as
+                    Aplikacia).omalovankyRepository)
+        }
+        val imageView = findViewById<ImageView>(R.id.Omalovanka_ImageView)
         customView  = CustomView(this)
         frameLayout = findViewById<FrameLayout>(R.id.fragment_kreslenie)
         frameLayout.addView(customView)
 
+        omalovankyViewModel.omalovankyy.observe(this, Observer { omalovankyy ->
+            //var imageId: String  = "res/drawable/" + omalovankyy[0].toString()
+            //val uricko = Uri.parse(imageId)
+            //println(uricko)
+           // imageView.setImageURI(uricko)
+        })
         val return_Button = findViewById<View>(R.id.return_Button)
         return_Button.setOnClickListener {
             val intent = Intent(this, HryActivity::class.java)

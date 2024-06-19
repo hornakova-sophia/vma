@@ -46,7 +46,8 @@ abstract class Databaza : RoomDatabase() {
                                 it.jazykDao().insert(Jazyk("Zviera","HAD","SNAKE",""))
                                 it.jazykDao().insert(Jazyk("Zviera","SLON","ELEPHANT",""))
 
-                                it.omalovankyDao().insert(Omalovanky("MAČKA",""))
+                                it.omalovankyDao().insert(Omalovanky("o1"))
+                                it.omalovankyDao().insert(Omalovanky("o2"))
 
                             }
                         }

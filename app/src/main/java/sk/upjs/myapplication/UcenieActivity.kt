@@ -50,6 +50,14 @@ class UcenieActivity : AppCompatActivity() {
         }
         val preklad_Button = findViewById<View>(R.id.preklad_Button)
         preklad_Button.setOnClickListener {
+            prepinanie = true
+            val intent = Intent(this, PrekladSKActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        val prekladEN_Button = findViewById<View>(R.id.prekladEN_Button)
+        prekladEN_Button.setOnClickListener {
+            prepinanie = false
             val intent = Intent(this, PrekladSKActivity::class.java)
             startActivity(intent)
             finish()

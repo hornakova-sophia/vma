@@ -1,4 +1,5 @@
 package jazyk
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
@@ -8,6 +9,15 @@ import kotlinx.coroutines.launch
 class JazykViewModel(private val repository: JazykRepository) : ViewModel() {
 
     val jazyky = repository.jazyky.asLiveData()
+    suspend fun getByUUID(id: Int) {
+        return repository.getByUUID(id)
+    }
+    fun getAllJazyky() {
+        viewModelScope.launch {
+            repository.getAllJazyky()
+        }
+    }
+
 
     fun delete(jazyk: Jazyk) {
         viewModelScope.launch {

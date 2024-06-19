@@ -14,7 +14,11 @@ class OmalovankyViewModel(private val repository: OmalovankyRepository) : ViewMo
             repository.delete(omalovanky)
         }
     }
-
+    fun getAllOmalovanky() {
+        viewModelScope.launch {
+            repository.getAllOmalovanky()
+        }
+    }
     class OmalovankyViewModelFactory(private val repository: OmalovankyRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(OmalovankyViewModel::class.java)) {

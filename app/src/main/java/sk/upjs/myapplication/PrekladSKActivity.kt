@@ -7,79 +7,98 @@ import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import jazyk.Jazyk
+import androidx.lifecycle.Observer
 import jazyk.JazykViewModel
-
+import android.widget.TextView
+import androidx.lifecycle.viewModelScope
+import jazyk.Jazyk
+import kotlinx.coroutines.launch
 
 class PrekladSKActivity : AppCompatActivity() {
+    var idCislo: Int = 0
+    var vysledok: String = ""
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_textove)
-        val jazykViewModel : JazykViewModel by androidx.activity.viewModels {
-            JazykViewModel.JazykViewModelFactory((androidx.activity.application as Aplikacia).jazykRepository)
+
+        val jazykViewModel : JazykViewModel by viewModels {
+            JazykViewModel.JazykViewModelFactory((application as
+                    Aplikacia).jazykRepository)
         }
+        val textView = findViewById<TextView>(R.id.vstupy)
+        val vpisuj_pole = findViewById<EditText>(R.id.vpisuj_pole)
 
-        val recyclerView  = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = PrekladSKAdapter(
-            object : OnJazykClickListener {
-                override fun onJazykClick(jazyk: Jazyk) {
-                    Toast.makeText(this@PrekladSKActivity, jazyk.toString(), Toast.LENGTH_SHORT).show()
+        vpisuj_pole.inputType = InputType.TYPE_CLASS_TEXT
 
-                }
-
-            }
-        )
-        recyclerView.adapter = adapter
-
-        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-            0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ) = false
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val index = viewHolder.adapterPosition
-                adapter.remove(index)
-            }
-
-        })
-        itemTouchHelper.attachToRecyclerView(recyclerView)
+        if(prepinanie){
+            jazykViewModel.jazyky.observe(this, Observer { jazyky ->
+                textView.text = jazyky[idCislo].slovensky
+            })
+        }else{
+            jazykViewModel.jazyky.observe(this, Observer { jazyky ->
+                textView.text = jazyky[idCislo].anglicky
+            })
+        }
 
 
         val return_Button = findViewById<View>(R.id.return_Button)
         return_Button.setOnClickListener {
             val intent = Intent(this, UcenieActivity::class.java)
             startActivity(intent)
+            finish()
         }
+        fun dalesie() {
+            idCislo+=1
+            jazykViewModel.jazyky.observe(this, Observer { jazyky ->
+                if(idCislo>=jazyky.size){
+                    idCislo=0
+                }
+                if(prepinanie){
+                    textView.text = jazyky[idCislo].slovensky
+                }
+                if(!prepinanie){
+                    textView.text = jazyky[idCislo].anglicky
+
+                }
+            })
+
+            vpisuj_pole.text.clear()
+        }
+
         val dalej_Button = findViewById<View>(R.id.dalej_Button)
         dalej_Button.setOnClickListener {
+            dalesie()
         }
-        val vpisuj_pole = findViewById<EditText>(R.id.vpisuj_pole)
-        vpisuj_pole.inputType = InputType.TYPE_CLASS_NUMBER
+
 
         val skontroluj_Button = findViewById<View>(R.id.skontroluj_Button)
         skontroluj_Button.setOnClickListener {
             val userInput = vpisuj_pole.text.toString()
-            if (userInput.equals("")){
+            val userInputUpperCase = userInput.uppercase()
+            if(prepinanie){
+                jazykViewModel.jazyky.observe(this, Observer { jazyky ->
+                    vysledok = jazyky[idCislo].anglicky
+                })
+            }else{
+                jazykViewModel.jazyky.observe(this, Observer { jazyky ->
+                    vysledok = jazyky[idCislo].slovensky
+                })
+            }
+
+            if (userInputUpperCase.equals(vysledok)){
                 showToast("Spravne")
+                dalesie()
             }else{
                 showToast("Nespravne")
             }
         }
-    }
-    private fun random() {
 
     }
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

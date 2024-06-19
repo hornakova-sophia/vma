@@ -176,8 +176,8 @@
 
     <FrameLayout
         android:id="@+id/fragment_kreslenie"
-        android:layout_width="417dp"
-        android:layout_height="672dp"
+        android:layout_width="418dp"
+        android:layout_height="465dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,8 +188,8 @@
 
         <ImageView
             android:id="@+id/Omalovanka_ImageView"
-            android:layout_width="672dp"
-            android:layout_height="511dp"
+            android:layout_width="match_parent"
+            android:layout_height="405dp"
             android:layout_gravity="center"
             android:gravity="center" />
     </FrameLayout>
