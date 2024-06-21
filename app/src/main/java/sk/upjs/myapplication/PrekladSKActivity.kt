@@ -36,11 +36,20 @@ class PrekladSKActivity : AppCompatActivity() {
 
         if(prepinanie){
             jazykViewModel.jazyky.observe(this, Observer { jazyky ->
-                textView.text = jazyky[idCislo].slovensky
+                if ( jazyky.isEmpty()){
+                    textView.text="MAČKA"
+                }else{
+                    textView.text = jazyky[idCislo].slovensky
+                }
+
             })
         }else{
             jazykViewModel.jazyky.observe(this, Observer { jazyky ->
-                textView.text = jazyky[idCislo].anglicky
+                if (jazyky.isEmpty()){
+                    textView.text="CAT"
+                }else{
+                    textView.text = jazyky[idCislo].anglicky
+                }
             })
         }
 

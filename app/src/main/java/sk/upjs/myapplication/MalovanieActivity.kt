@@ -2,7 +2,6 @@ package sk.upjs.myapplication
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -12,7 +11,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -24,9 +22,7 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.viewModels
-import jazyk.JazykViewModel
 import omalovanky.OmalovankyViewModel
 import java.io.File
 import java.io.FileOutputStream
@@ -64,9 +60,14 @@ class MalovanieActivity : AppCompatActivity(){
                         cislo=0
                     }
                     if(cislo==-1){
-                        cislo=omalovankyy.size
+                        cislo=omalovankyy.size -1
                     }
-                    var imageNameWithExtension: String = omalovankyy[cislo].obrazok
+                    var imageNameWithExtension:String=""
+                    if ( omalovankyy.isEmpty()){
+                        imageNameWithExtension = "o1"
+                    }else{
+                        imageNameWithExtension = omalovankyy[cislo].obrazok
+                    }
                     val imageName = imageNameWithExtension.substringBeforeLast(".")
                     val drawableId = try {
                         R.drawable::class.java.getField(imageName).getInt(null)

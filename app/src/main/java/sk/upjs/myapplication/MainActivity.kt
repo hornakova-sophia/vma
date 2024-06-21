@@ -7,10 +7,11 @@ import android.view.View
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        intent = Intent(this, BackgroundSoundService::class.java)
-        startService(intent)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        intent = Intent(this, BackgroundSoundService::class.java)
+        startService(intent)
 
         val ucenie = findViewById<View>(R.id.ucenie)
         ucenie.setOnClickListener {
