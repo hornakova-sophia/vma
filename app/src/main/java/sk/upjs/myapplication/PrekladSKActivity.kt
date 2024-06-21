@@ -44,13 +44,6 @@ class PrekladSKActivity : AppCompatActivity() {
             })
         }
 
-
-        val return_Button = findViewById<View>(R.id.return_Button)
-        return_Button.setOnClickListener {
-            val intent = Intent(this, UcenieActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
         fun dalesie() {
             idCislo+=1
             jazykViewModel.jazyky.observe(this, Observer { jazyky ->

@@ -32,12 +32,6 @@ class KreslenieAcivity : AppCompatActivity() {
 
         frameLayout.addView(customView)
 
-        val return_Button = findViewById<View>(R.id.return_Button)
-        return_Button.setOnClickListener {
-            val intent = Intent(this, UcenieActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
         val nasledujuce_Button = findViewById<View>(R.id.nasledujuce_Button)
         nasledujuce_Button.setOnClickListener {
             customView.clearDrawing()

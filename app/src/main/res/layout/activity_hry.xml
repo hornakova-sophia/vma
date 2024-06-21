@@ -12,7 +12,7 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:backgroundTint="#00868B"
-        android:text="malovanie_Button"
+        android:text="maľovanie"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:backgroundTint="#00868B"
-        android:text="omalovanky_button"
+        android:text="omaľovánky"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:backgroundTint="#00868B"
-        android:text="motorika_button"
+        android:text="motorika"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:backgroundTint="#00868B"
-        android:text="Čísla"
+        android:text="NEVIEM"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,17 +78,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.087" />
 
-    <ImageButton
-        android:id="@+id/return_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        app:tint="#00BCD4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

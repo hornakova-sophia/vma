@@ -43,29 +43,56 @@ class MalovanieActivity : AppCompatActivity(){
     private val STORAGE_PERMISSION_CODE = 1000
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
+        var cislo : Int = 0
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_malovanie)
         val omalovankyViewModel : OmalovankyViewModel by viewModels {
             OmalovankyViewModel.OmalovankyViewModelFactory((application as
                     Aplikacia).omalovankyRepository)
         }
-        val imageView = findViewById<ImageView>(R.id.Omalovanka_ImageView)
         customView  = CustomView(this)
         frameLayout = findViewById<FrameLayout>(R.id.fragment_kreslenie)
         frameLayout.addView(customView)
 
-        omalovankyViewModel.omalovankyy.observe(this, Observer { omalovankyy ->
-            //var imageId: String  = "res/drawable/" + omalovankyy[0].toString()
-            //val uricko = Uri.parse(imageId)
-            //println(uricko)
-           // imageView.setImageURI(uricko)
-        })
-        val return_Button = findViewById<View>(R.id.return_Button)
-        return_Button.setOnClickListener {
-            val intent = Intent(this, HryActivity::class.java)
-            startActivity(intent)
-            finish()
+        val nasledujuce_Button = findViewById<View>(R.id.nasledujuce_Button)
+        val predosle_Button = findViewById<ImageButton>(R.id.predosle_Button)
+        if(!prepinanie){
+            val imageView = findViewById<ImageView>(R.id.Omalovanka_ImageView)
+            fun obrazocek() {
+                omalovankyViewModel.omalovankyy.observe(this, Observer { omalovankyy ->
+                    if(cislo>=omalovankyy.size){
+                        cislo=0
+                    }
+                    if(cislo==-1){
+                        cislo=omalovankyy.size
+                    }
+                    var imageNameWithExtension: String = omalovankyy[cislo].obrazok
+                    val imageName = imageNameWithExtension.substringBeforeLast(".")
+                    val drawableId = try {
+                        R.drawable::class.java.getField(imageName).getInt(null)
+                    } catch (e: Exception) {
+                        R.drawable.o2
+                    }
+                    imageView.setImageResource(drawableId)
+                })
+                customView.clearDrawing()
+            }
+            obrazocek()
+
+            nasledujuce_Button.setOnClickListener {
+                cislo+=1
+                obrazocek()
+            }
+
+            predosle_Button.setOnClickListener {
+                cislo-=1
+                obrazocek()
+            }
+        }else{
+            predosle_Button.visibility = View.GONE
+            nasledujuce_Button.visibility = View.GONE
         }
+
 
        val saveButton = findViewById<ImageButton>(R.id.save_Button)
         saveButton.setOnClickListener {
@@ -137,12 +164,9 @@ class MalovanieActivity : AppCompatActivity(){
             pomocnaFarba = Color.parseColor("#673AB7")
             customView.updatePaint()
         }
-        predosle_Button = findViewById<ImageButton>(R.id.predosle_Button)
-        nasledujuce_Button = findViewById<ImageButton>(R.id.nasledujuce_Button)
 
-        // Hide sivaButton and cervenaButton throughout the activity
-        predosle_Button.visibility = View.GONE
-        nasledujuce_Button.visibility = View.GONE
+
+
 
     }
     private fun saveFrameLayoutToGallery() {

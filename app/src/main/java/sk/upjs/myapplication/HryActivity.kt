@@ -13,25 +13,24 @@ class HryActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hry)
 
-        val return_Button = findViewById<View>(R.id.return_Button)
-        return_Button.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
         val malovanie_Button = findViewById<View>(R.id.malovanie_Button)
         malovanie_Button.setOnClickListener {
+            prepinanie=true
             val intent = Intent(this, MalovanieActivity::class.java)
             startActivity(intent)
-            finish()
         }
+        val omalovanky_button = findViewById<View>(R.id.omalovanky_button)
+        omalovanky_button.setOnClickListener {
+            prepinanie=false
+            val intent = Intent(this, MalovanieActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val motorika_button = findViewById<View>(R.id.motorika_button)
         motorika_button.setOnClickListener {
             val intent = Intent(this,ChodenieKreslenieActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 

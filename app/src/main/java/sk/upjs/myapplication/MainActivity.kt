@@ -7,6 +7,8 @@ import android.view.View
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        intent = Intent(this, BackgroundSoundService::class.java)
+        startService(intent)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -14,13 +16,11 @@ class MainActivity : AppCompatActivity() {
         ucenie.setOnClickListener {
             val intent = Intent(this, UcenieActivity::class.java)
             startActivity(intent)
-            finish()
     }
         val hry = findViewById<View>(R.id.hry)
         hry.setOnClickListener {
             val intent = Intent(this, HryActivity::class.java)
             startActivity(intent)
-            finish()
         }
 }
 }

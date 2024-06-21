@@ -23,12 +23,6 @@ class MatematikaZaciatocnikActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.vstupy)
         textView.text = a.toString()+ " + " + b.toString() + " ="
 
-        val return_Button = findViewById<View>(R.id.return_Button)
-        return_Button.setOnClickListener {
-            val intent = Intent(this, UcenieActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
         val vpisuj_pole = findViewById<EditText>(R.id.vpisuj_pole)
         vpisuj_pole.inputType = InputType.TYPE_CLASS_NUMBER
 

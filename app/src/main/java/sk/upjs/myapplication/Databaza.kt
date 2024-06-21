@@ -37,7 +37,7 @@ abstract class Databaza : RoomDatabase() {
                         INSTANCE?.let {
                             scope.launch {
                                 it.jazykDao().deleteAll()
-                                it.omalovankyDao().deleteAll()
+
                                 it.jazykDao().insert(Jazyk("Zviera","MAČKA","CAT",""))
                                 it.jazykDao().insert(Jazyk("Zviera","PES","DOG",""))
                                 it.jazykDao().insert(Jazyk("Zviera","KÔŇ","HORSE",""))
@@ -46,8 +46,19 @@ abstract class Databaza : RoomDatabase() {
                                 it.jazykDao().insert(Jazyk("Zviera","HAD","SNAKE",""))
                                 it.jazykDao().insert(Jazyk("Zviera","SLON","ELEPHANT",""))
 
+                                it.omalovankyDao().deleteAll()
                                 it.omalovankyDao().insert(Omalovanky("o1"))
                                 it.omalovankyDao().insert(Omalovanky("o2"))
+                                it.omalovankyDao().insert(Omalovanky("o3"))
+                                it.omalovankyDao().insert(Omalovanky("o4"))
+                                it.omalovankyDao().insert(Omalovanky("o5"))
+                                it.omalovankyDao().insert(Omalovanky("o6"))
+                                it.omalovankyDao().insert(Omalovanky("o7"))
+                                it.omalovankyDao().insert(Omalovanky("o8"))
+                                it.omalovankyDao().insert(Omalovanky("o9"))
+                                it.omalovankyDao().insert(Omalovanky("o10"))
+                                it.omalovankyDao().insert(Omalovanky("o11"))
+                                it.omalovankyDao().insert(Omalovanky("o12"))
 
                             }
                         }
