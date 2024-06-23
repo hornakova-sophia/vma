@@ -40,7 +40,6 @@ class ChodenieKreslenieActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        // Not used in this example
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -49,8 +48,7 @@ class ChodenieKreslenieActivity : AppCompatActivity(), SensorEventListener {
                 val x = it.values[0]
                 val y = it.values[1]
 
-                // Adjust path movement based on accelerometer data
-                customView.updatePath(-x, y) // Invert x for natural drawing orientation
+                customView.updatePath(-x, y)
             }
         }
     }
@@ -77,7 +75,6 @@ class ChodenieKreslenieActivity : AppCompatActivity(), SensorEventListener {
         }
         fun updatePath(deltaX: Float, deltaY: Float) {
             if (isPathInitialized) {
-                // Calculate new position based on accelerometer data
                 val newX = (width / 2 + deltaX * 50)
                 val newY = (height / 2 + deltaY * 100)
                 path.lineTo(newX, newY)

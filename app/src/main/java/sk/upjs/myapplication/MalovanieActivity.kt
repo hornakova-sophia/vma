@@ -21,6 +21,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.viewModels
 import omalovanky.OmalovankyViewModel
@@ -93,8 +94,7 @@ class MalovanieActivity : AppCompatActivity(){
             predosle_Button.visibility = View.GONE
             nasledujuce_Button.visibility = View.GONE
         }
-
-
+        val ceruzkaButton = findViewById<ImageButton>(R.id.ceruzkaButton)
        val saveButton = findViewById<ImageButton>(R.id.save_Button)
         saveButton.setOnClickListener {
             checkPermission()
@@ -107,66 +107,89 @@ class MalovanieActivity : AppCompatActivity(){
         val cierna_button = findViewById<View>(R.id.cierna_button)
         cierna_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#000000")
+            ceruzkaButton.setColorFilter(Color.parseColor("#000000"))
             customView.updatePaint()
+
+        }
+        val biela_button = findViewById<View>(R.id.biela_button)
+        biela_button.setOnClickListener {
+            pomocnaFarba = Color.parseColor("#FFFFFF")
+            ceruzkaButton.setColorFilter(Color.parseColor("#EDEDED"))
+            customView.updatePaint()
+
         }
         val siva_button = findViewById<View>(R.id.siva_button)
         siva_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#616161")
+            ceruzkaButton.setColorFilter(Color.parseColor("#616161"))
             customView.updatePaint()
+
         }
         val hneda_button = findViewById<View>(R.id.hneda_button)
         hneda_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#6A3F00")
+            ceruzkaButton.setColorFilter(Color.parseColor("#6A3F00"))
             customView.updatePaint()
+
         }
         val cervena_button = findViewById<View>(R.id.cervena_button)
         cervena_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#B60000")
+            ceruzkaButton.setColorFilter(Color.parseColor("#B60000"))
             customView.updatePaint()
         }
         val modra_tmava_button = findViewById<View>(R.id.modra_tmava_button)
         modra_tmava_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#1A2FA3")
+            ceruzkaButton.setColorFilter(Color.parseColor("#1A2FA3"))
             customView.updatePaint()
         }
         val modra_button = findViewById<View>(R.id.modra_button)
         modra_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#2196F3")
+            ceruzkaButton.setColorFilter(Color.parseColor("#2196F3"))
+
             customView.updatePaint()
         }
         val zelena_button = findViewById<View>(R.id.zelena_button)
         zelena_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#4CAF50")
+            ceruzkaButton.setColorFilter(Color.parseColor("#4CAF50"))
             customView.updatePaint()
         }
         val zelena_tmava_button = findViewById<View>(R.id.zelena_tmava_button)
         zelena_tmava_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#036A61")
+            ceruzkaButton.setColorFilter(Color.parseColor("#036A61"))
             customView.updatePaint()
         }
 
         val zlta_button = findViewById<View>(R.id.zlta_button)
         zlta_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#FFEB3B")
+            ceruzkaButton.setColorFilter(Color.parseColor("#FFEB3B"))
             customView.updatePaint()
         }
         val oranzova_button = findViewById<View>(R.id.oranzova_button)
         oranzova_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#FF5722")
+            ceruzkaButton.setColorFilter(Color.parseColor("#FF5722"))
+
             customView.updatePaint()
         }
         val ruzova_button = findViewById<View>(R.id.ruzova_button)
         ruzova_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#E61CD3")
+            ceruzkaButton.setColorFilter(Color.parseColor("#E61CD3"))
+
             customView.updatePaint()
         }
         val fialova_button = findViewById<View>(R.id.fialova_button)
         fialova_button.setOnClickListener {
             pomocnaFarba = Color.parseColor("#673AB7")
+            ceruzkaButton.setColorFilter(Color.parseColor("#673AB7"))
             customView.updatePaint()
         }
-
-
 
 
     }
@@ -197,8 +220,7 @@ class MalovanieActivity : AppCompatActivity(){
         }
         fos?.use {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-            // Toast to show that the image has been saved
-            Toast.makeText(this, "Saved to Gallery", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Uložené do Gallérie", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -215,11 +237,7 @@ class MalovanieActivity : AppCompatActivity(){
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                // Permission was granted
                 saveFrameLayoutToGallery()
-            } else {
-                // Permission was denied
-                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -274,7 +292,6 @@ class MalovanieActivity : AppCompatActivity(){
                     currentPath.lineTo(event.x, event.y)
                 }
                 MotionEvent.ACTION_UP -> {
-                    // Optionally handle touch up
                 }
             }
             invalidate()

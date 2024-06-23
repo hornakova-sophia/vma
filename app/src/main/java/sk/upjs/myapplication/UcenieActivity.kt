@@ -50,6 +50,18 @@ class UcenieActivity : AppCompatActivity() {
             val intent = Intent(this, PrekladSKActivity::class.java)
             startActivity(intent)
         }
+        val Obrazovek_button = findViewById<View>(R.id.Obrazovek_button)
+        Obrazovek_button.setOnClickListener {
+            prepinanie = true
+            val intent = Intent(this, ObrazoktextActivity::class.java)
+            startActivity(intent)
+        }
+        val ObrazovekEN_button = findViewById<View>(R.id.ObrazovekEN_button)
+        ObrazovekEN_button.setOnClickListener {
+            prepinanie = false
+            val intent = Intent(this, ObrazoktextActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

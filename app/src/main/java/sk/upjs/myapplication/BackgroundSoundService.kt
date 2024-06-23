@@ -5,7 +5,7 @@ import android.content.Intent
 import android.content.res.AssetFileDescriptor
 import android.media.MediaPlayer
 import android.os.IBinder
-
+//https://stackoverflow.com/questions/74910453/play-audio-file-in-the-background-using-a-service
 class BackgroundSoundService : Service() {
     private lateinit var player: MediaPlayer
 
@@ -20,7 +20,7 @@ class BackgroundSoundService : Service() {
             setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
             isLooping = true // Set looping
             setVolume(1.0f, 1.0f)
-            prepare() // Prepare the player so it's ready to play
+            prepare()
         }
     }
 

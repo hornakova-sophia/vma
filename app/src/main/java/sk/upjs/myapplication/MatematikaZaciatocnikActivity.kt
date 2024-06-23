@@ -37,12 +37,12 @@ class MatematikaZaciatocnikActivity : AppCompatActivity() {
         skontroluj_Button.setOnClickListener {
             val userInput = vpisuj_pole.text.toString()
             if (userInput.equals(vysledok.toString())){
-                showToast("Spravne")
+                showToast("Správne")
                 random()
                 textView.text = a.toString()+ " " + znamienko + " " + b.toString() + " ="
                 vpisuj_pole.text.clear()
             }else{
-                showToast("Nespravne")
+                showToast("Nesprávne")
             }
         }
     }

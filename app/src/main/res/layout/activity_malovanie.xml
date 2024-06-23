@@ -8,8 +8,8 @@
 
     <FrameLayout
         android:id="@+id/fragment_kreslenie"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +24,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center" />
+
     </FrameLayout>
 
     <Button
@@ -37,6 +38,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.962"
         android:backgroundTint="#000000"/>
+
+    <Button
+        android:id="@+id/biela_button"
+        android:layout_width="25dp"
+        android:layout_height="32dp"
+        android:backgroundTint="#EDEDED"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962" />
 
     <Button
         android:id="@+id/modra_tmava_button"
@@ -218,5 +231,17 @@
         app:layout_constraintVertical_bias="0.886"
         app:srcCompat="@android:drawable/ic_delete" />
 
+    <ImageButton
+        android:id="@+id/ceruzkaButton"
+        android:layout_width="38dp"
+        android:layout_height="28dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

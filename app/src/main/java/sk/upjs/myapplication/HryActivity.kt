@@ -25,7 +25,11 @@ class HryActivity  : AppCompatActivity() {
             val intent = Intent(this, MalovanieActivity::class.java)
             startActivity(intent)
         }
-
+        val pexeso_button = findViewById<View>(R.id.pexeso_button)
+        pexeso_button.setOnClickListener {
+            val intent = Intent(this, PexesoActivity::class.java)
+            startActivity(intent)
+        }
 
         val motorika_button = findViewById<View>(R.id.motorika_button)
         motorika_button.setOnClickListener {

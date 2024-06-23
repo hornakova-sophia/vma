@@ -16,6 +16,7 @@ constraintlayout = "2.1.4"
 ksp = "2.0.0-1.0.22"
 roomRuntime = "2.6.1"
 navigationUiKtx = "2.7.7"
+firebaseMessagingKtx = "24.0.0"
 
 [libraries]
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
@@ -38,6 +39,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version = "2.5.1" }
 fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version = "1.4.1" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 
 
 [plugins]
