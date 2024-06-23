@@ -26,6 +26,6 @@ class NastaveniaActivity : AppCompatActivity() {
         val webView: WebView = findViewById(R.id.webView)
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
-        webView.loadUrl("https://sk.wikipedia.org/wiki/Ma%C4%8Dka_dom%C3%A1ca")
+        webView.loadUrl("https://github.com/hornakova-sophia/vma")
     }
 }
